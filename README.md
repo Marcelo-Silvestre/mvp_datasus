@@ -1,2 +1,2 @@
-# MVP_Engenharia_de_Dados_PUCRIO_Nov2025
+# MVP_Engenharia_de_Dados
 Repositório público com o MVP da Sprint Engenharia de Dados PUCRIO.
