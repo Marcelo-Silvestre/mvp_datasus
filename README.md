@@ -47,12 +47,12 @@ As bases foram exportadas manualmente da interface TABNET, nos formatos CSV.
 
 ---
 
-## 🏗️ Arquitetura do Projeto (Databricks)
+## Arquitetura do Projeto (Databricks)
 
 
 ---
 
-## 📚 Estrutura do Repositório
+## Estrutura do Repositório
 
 Workspace Databricks
 ├── mvp_datasus
@@ -97,6 +97,43 @@ Workspace Databricks
 
 O arquivo **Power BI** contendo todos os gráficos e indicadores está em:
 
+
+
+---
+
+## 🧪 Qualidade dos Dados
+
+- Verificação de schema em todas as 22 tabelas.  
+- Detecção e correção de valores nulos.  
+- Conversão de colunas numéricas inconsistentes.  
+- Contagem de registros por UF × Ano validada.
+
+(Detalhado em `docs/qualidade_dados.md`.)
+
+---
+
+## 🔄 Reprodutibilidade
+
+Para executar o pipeline:
+
+1. Subir os CSVs para `bronze/raw_table/`.
+2. Rodar notebooks da pasta Bronze.
+3. Rodar notebooks da pasta Silver.
+4. Rodar notebooks Gold (1 notebook por pergunta).
+5. Carregar a camada Gold no Power BI.
+
+---
+
+## © Licença dos Dados
+
+Todos os dados utilizados são públicos e disponibilizados por órgãos do Governo Federal do Brasil.
+
+---
+
+## ✍️ Autor
+
+**Marcelo Silvestre**  
+Projeto desenvolvido para a disciplina de Engenharia de Dados — PUC-Rio.
 
 
 
