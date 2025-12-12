@@ -53,43 +53,47 @@ A modelagem segue uma abordagem simples em estrela (**Star Schema**) apropriada 
 
 ### **Tabela: fato_obitos_hiv**
 
-| Coluna       | Tipo   | Descrição                     |
-| ------------ | ------ | ----------------------------- |
-| uf           | STRING | Sigla da Unidade da Federação |
-| ano          | INT    | Ano do registro               |
-| faixa_etaria | STRING | Faixa etária padronizada      |
-| sexo         | STRING | Sexo (masc, fem ou total)     |
-| quantidade   | INT    | Quantidade de óbitos          |
+| Coluna       | Tipo   | Descrição                              |
+| ------------ | ------ | ---------------------------------------|
+| id_fato      | STRING | Chave primária da tabela               |
+| uf           | INT    |Chave estrangeira para dim_uf           |
+| ano          | INT    |Chave estrangeira para dim_ano          |
+| faixa        | INT    |Chave estrangeira para dim_faixa_etaria |
+| sexo         | INT    |Chave estrangeira para dim_ano          |
+| quantidade   | INT    |Quantidade de óbitos           |
 
 ### **Tabela: dim_uf**
 
-| Coluna  | Tipo   |
-| ------- | ------ |
-| uf      | STRING |
-| nome_uf | STRING |
-| regiao  | STRING |
+| Coluna  | Tipo   | Descrição                              |
+| ------- | ------ | ---------------------------------------|
+|id_uf    | INT    | Chave primária da tabela               |
+|cod_ibge | INT    |Código dos estados pelo IBGE            |
+|sigla_uf | STRING |Sigla representativa de todos os estados|
+|nome_uf  | STRING |Nome dos estados                        |
+
 
 ### **Tabela: dim_faixa_etaria**
 
-| Coluna       | Tipo   |
-| ------------ | ------ |
-| faixa_etaria | STRING |
-| descricao    | STRING |
-| ordem        | INT    |
+| Coluna  | Tipo   | Descrição                                                                        |
+| ------- | ------ | ---------------------------------------------------------------------------------|
+| id_faixa_etaria  |INT    | Chave primária da tabela                                                 |
+| faixa_etaria   | STRING  | Rótulo indicando os intervalos estabelecidos entre as faixas de idade    |
+| descricao      | STRING  | Descrição do intervalo de idade                                          |
+
 
 ### **Tabela: dim_sexo**
 
-| Coluna    | Tipo   |
-| --------- | ------ |
-| sexo      | STRING |
-| descricao | STRING |
+| Coluna  | Tipo     | Descrição                                |
+| ------- | ------   | -----------------------------------------|
+|id_sexo    | INT    | Chave primária da tabela                 |
+| sexo      | STRING | Definição do sexo (masculino, feminino)  |
 
 ### **Tabela: dim_ano**
 
-| Coluna    | Tipo   |
-| --------- | ------ |
-| ano       | INT    |
-| ano_label | STRING |
+| Coluna  | Tipo   | Descrição                                |
+| ------- | ------ | -----------------------------------------|
+| id_ano    | INT  | Chave primária da tabela                 |
+| ano       | INT  | ano considerado (2020 a 2025)            |
 
 ---
 
@@ -108,47 +112,12 @@ A modelagem segue uma abordagem simples em estrela (**Star Schema**) apropriada 
 
 ---
 
-## 6. Diagrama Simplificado (Mermaid)
+## 6. Diagrama Simplificado
 
-```mermaid
-erDiagram
-    FATO_OBITOS_HIV {
-        string uf
-        int ano
-        string faixa_etaria
-        string sexo
-        int quantidade
-    }
+<img width="829" height="469" alt="esquema_estrela_mvp" src="https://github.com/user-attachments/assets/15d99fe9-206d-4b18-a5f6-74054460e8c2" />
 
-    DIM_UF {
-        string uf
-        string nome_uf
-        string regiao
-    }
 
-    DIM_ANO {
-        int ano
-        string ano_label
-    }
 
-    DIM_FAIXA_ETARIA {
-        string faixa_etaria
-        string descricao
-        int ordem
-    }
-
-    DIM_SEXO {
-        string sexo
-        string descricao
-    }
-
-    DIM_UF ||--o{ FATO_OBITOS_HIV : referencia
-    DIM_ANO ||--o{ FATO_OBITOS_HIV : referencia
-    DIM_FAIXA_ETARIA ||--o{ FATO_OBITOS_HIV : referencia
-    DIM_SEXO ||--o{ FATO_OBITOS_HIV : referencia
-```
-
----
 
 ## 7. Considerações Finais
 
