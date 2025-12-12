@@ -17,19 +17,19 @@ Construir um pipeline de dados capaz de:
 
 ---
 
-## Perguntas de Negócio (que o MVP responde)
+## Perguntas que o MVP responde:
 
-1. Quantos óbitos por HIV, registrados em internações no SUS, ocorreram de janeiro de 2020 a setembro de 2025?
-2. Qual UF teve o maior total de óbitos por HIV no período? E quantos foram?
-3. Qual UF teve o menor total de óbitos por HIV no período? E quantos foram?
-4. Qual é a distribuição dos óbitos por HIV por faixa etária?
-5. Qual faixa etária concentrou o maior número de óbitos?
-6. Qual faixa etária concentrou o menor número de óbitos?
-7. Como se distribuem os óbitos por HIV por raça/cor?
-8. Qual raça/cor registrou o maior número de óbitos?
-9. Qual raça/cor registrou o menor número de óbitos?
+1- Quantos óbitos, registrados a partir de internações no SUS, ocorreram de janeiro de 2020 a setembro de 2025?  
+2. Quantos óbitos por HIV ocorreram de janeiro de 2020 a setembro de 2025?  
+3- Qual o percentual de óbitos por HIV ocorridos de janeiro de 2020 a setembro de 2025, em relação a todos os óbitos no mesmo período?  
+4. Qual UF teve o maior total de óbitos por HIV no período e quantos foram?  
+5. Qual UF teve o menor total de óbitos por HIV no período e quantos foram?  
+6. Qual é a distribuição dos óbitos por HIV por faixa etária?  
+7. Qual faixa etária concentrou o maior número de óbitos?  
+8. Qual faixa etária concentrou o menor número de óbitos?  
+9. Como se distribuem os óbitos por HIV por sexo?  
 
-Essas perguntas são respondidas **na camada Gold**, alimentando dashboards no Power BI.
+Essas perguntas são respondidas **na camada Gold**.
 
 ---
 
@@ -50,7 +50,7 @@ http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sih/cnv/niuf.def
 
 ## Arquitetura do Projeto (Databricks)
 
-<img width="419" height="258" alt="image" src="https://github.com/user-attachments/assets/d2c0d66e-efa4-4078-b9cb-6b5864ccf800" />
+
 
 
 ## Pipeline ETL (Resumo)
@@ -65,24 +65,22 @@ http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sih/cnv/niuf.def
 - Conversões de tipos.
 - Limpeza de dados (`-` → 0, null → 0).
 - Normalização de anos, faixas e categorias.
-- Unpivot das colunas de ano.
 
 ###  Gold
-- Geração da tabela fato `fact_obitos_hiv`.
+- Geração da tabela fato `fato_obitos_hiv`.
 - Criação de agregações por:
   - UF  
   - Ano  
   - Faixa etária  
   - Sexo  
-  - Raça/cor
     
 - Materialização das análises que respondem às perguntas 1–9.
 
 ---
 
-## Visualização e Dashboard
+## Visualização 
 
-O arquivo **Power BI** contendo todos os gráficos e indicadores está em:
+O arquivo **Power BI** contendo todos os gráficos e indicadores está em: (AVALIANDO!!!!)
 
 ---
 
