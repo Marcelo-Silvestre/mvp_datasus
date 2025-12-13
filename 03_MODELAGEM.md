@@ -2,16 +2,16 @@
 
 ## 1. Introdução
 
-Este documento apresenta a modelagem adotada no MVP de Engenharia de Dados baseado em informações exportadas do DATASUS TABNET, cobrindo morbidade hospitalar e óbitos por HIV entre 2020 e 2025. A modelagem foi estruturada conforme boas práticas de arquitetura moderna (medallion architecture), com foco em padronização, rastreabilidade e preparação dos dados para análises na camada Gold.
+Este documento apresenta a modelagem adotada no MVP de Engenharia de Dados baseado em informações exportadas do DATASUS TABNET, cobrindo morbidade hospitalar e óbitos por HIV entre 2020 e 2025. A modelagem foi realizada com foco em padronização, rastreabilidade e preparação dos dados para análises na camada Gold.
 
 ---
 
-## 2. Arquitetura Adotada (Medallion Architecture)
+## 2. Arquitetura Adotada (Arquitetura Medalhão)
 
 ### **Bronze – Dados Brutos**
 
-* Ingestão direta dos arquivos CSV exportados do TABNET.
-* Armazenamento em formato Delta para garantir versionamento e confiabilidade.
+* Ingestão direta dos arquivos CSV exportados do DATASUS TABNET.
+* Armazenamento em formato Delta.
 * Sem transformações além da leitura inicial.
 
 ### **Silver – Dados Tratados e Padronizados**
@@ -19,26 +19,26 @@ Este documento apresenta a modelagem adotada no MVP de Engenharia de Dados basea
 * Padronização dos schemas.
 * Conversão de tipos.
 * Tratamento de valores nulos e inconsistentes.
-* Uniformização de colunas: `uf`, `ano`, `faixa_etaria`, `sexo`, `quantidade`.
+* Uniformização de colunas.
 * Geração de tabelas normalizadas prontas para agregações.
 
 ### **Gold – Dados Modelados para Consumo Analítico**
 
-* Aplicação de agregações e cálculos por estado, ano e faixa etária.
-* Tabelas modeladas para responder às perguntas de negócio definidas na sprint.
+* Aplicação de agregações e cálculos.
+* Tabelas modeladas para responder às perguntas de negócio.
 
 ---
 
 ## 3. Modelagem Conceitual
 
-A modelagem segue uma abordagem simples em estrela (**Star Schema**) apropriada para análises descritivas.
+A modelagem segue uma abordagem em estrela (**Star Schema**).
 
 ### **Fato Principal**
 
 **Fato_Obitos_HIV**
 
-* Contém registros de óbitos decorrentes de internações no SUS por HIV.
-* Granularidade: *UF + Ano + Faixa Etária + Sexo*.
+* Contém registros de óbitos por HIV, decorrentes de internações no SUS .
+* Granularidade: *UF + Ano + Faixa-Etária + Sexo*.
 
 ### **Dimensões**
 
@@ -55,12 +55,12 @@ A modelagem segue uma abordagem simples em estrela (**Star Schema**) apropriada 
 
 | Coluna       | Tipo   | Descrição                              |
 | ------------ | ------ | ---------------------------------------|
-| id_fato      | STRING | Chave primária da tabela               |
+| id_fato      | STRING |Chave primária da tabela                |
 | uf           | INT    |Chave estrangeira para dim_uf           |
 | ano          | INT    |Chave estrangeira para dim_ano          |
 | faixa        | INT    |Chave estrangeira para dim_faixa_etaria |
 | sexo         | INT    |Chave estrangeira para dim_ano          |
-| quantidade   | INT    |Quantidade de óbitos           |
+| quantidade   | INT    |Quantidade de óbitos                    |
 
 ### **Tabela: dim_uf**
 
@@ -74,24 +74,24 @@ A modelagem segue uma abordagem simples em estrela (**Star Schema**) apropriada 
 
 ### **Tabela: dim_faixa_etaria**
 
-| Coluna  | Tipo   | Descrição                                                                        |
-| ------- | ------ | ---------------------------------------------------------------------------------|
+| Coluna           | Tipo   | Descrição                                                               |
+| ---------------- | ------ | ------------------------------------------------------------------------|
 | id_faixa_etaria  |INT    | Chave primária da tabela                                                 |
-| faixa_etaria   | STRING  | Rótulo indicando os intervalos estabelecidos entre as faixas de idade    |
-| descricao      | STRING  | Descrição do intervalo de idade                                          |
+| faixa_etaria     |STRING | Rótulo indicando os intervalos estabelecidos entre as faixas de idade    |
+| descricao        |STRING | Descrição do intervalo de idade                                          |
 
 
 ### **Tabela: dim_sexo**
 
-| Coluna  | Tipo     | Descrição                                |
-| ------- | ------   | -----------------------------------------|
+| Coluna    | Tipo   | Descrição                                |
+| ----------| ------ | -----------------------------------------|
 |id_sexo    | INT    | Chave primária da tabela                 |
 | sexo      | STRING | Definição do sexo (masculino, feminino)  |
 
 ### **Tabela: dim_ano**
 
-| Coluna  | Tipo   | Descrição                                |
-| ------- | ------ | -----------------------------------------|
+| Coluna    | Tipo | Descrição                                |
+| --------- | ---- | -----------------------------------------|
 | id_ano    | INT  | Chave primária da tabela                 |
 | ano       | INT  | ano considerado (2020 a 2025)            |
 
