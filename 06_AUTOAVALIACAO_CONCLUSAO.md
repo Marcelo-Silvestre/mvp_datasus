@@ -1,6 +1,6 @@
 # **2. Autoavaliação**
 
-A construção deste MVP procuerou seguir todas as etapas propostas no projeto do MVP, resultando em um pipeline completo operando no Databricks. A seguir, apresento a autoavaliação estruturada conforme solicitado.
+A construção deste MVP procurou seguir todas as etapas propostas no projeto, resultando em um pipeline completo operando no Databricks Free Edition. A seguir, apresento a autoavaliação estruturada conforme solicitado.
 
 ## **2.1 Atingimento dos Objetivos**
 
