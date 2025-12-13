@@ -78,32 +78,12 @@ http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sih/cnv/niuf.def
 
 ---
 
-## Visualização 
-
-O arquivo **Power BI** contendo todos os gráficos e indicadores está em: (AVALIANDO!!!!)
-
----
-
 ## Qualidade dos Dados
 
 - Verificação de schema em todas as 22 tabelas.  
 - Detecção e correção de valores nulos.  
 - Conversão de colunas numéricas inconsistentes.  
 - Contagem de registros por UF × Ano validada.
-
-(Detalhado em `docs/qualidade_dados.md`.)
-
----
-
-## Reprodutibilidade
-
-Para executar o pipeline:
-
-1. Subir os CSVs para `bronze/raw_table/`.
-2. Rodar notebooks da pasta Bronze.
-3. Rodar notebooks da pasta Silver.
-4. Rodar notebooks Gold (1 notebook por pergunta).
-5. Carregar a camada Gold no Power BI.
 
 ---
 
