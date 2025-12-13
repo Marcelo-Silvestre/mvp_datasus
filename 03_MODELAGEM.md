@@ -42,7 +42,7 @@ A modelagem segue uma abordagem em estrela (**Star Schema**).
 
 ### **Dimensões**
 
-* **Dim_UF** — lista de Unidades da Federação com nome e sigla.
+* **Dim_uf** — lista de Unidades da Federação com nome e sigla.
 * **Dim_Ano** — intervalo 2020–2025.
 * **Dim_FaixaEtaria** — faixas padronizadas utilizadas no MVP.
 * **Dim_Sexo** — Masculino, Feminino ou Total.
