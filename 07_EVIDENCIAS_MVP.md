@@ -10,21 +10,21 @@ Os prints demonstram o uso efetivo do ambiente Databricks Free Edition, seus rec
 
 Abaixo estão listados os prints de tela que comprovam o desenvolvimento do MVP na plataforma Databricks:
 
-###1- Evidência da criação do projeto mvp_datasus e estrutura em camadas no Databricks Free Edition:
+### 1- Evidência da criação do projeto mvp_datasus e estrutura em camadas no Databricks Free Edition:
 ---
 ![](imagens/databricks_print_mvp.png)
 
-###2- Conteúdo da camada bronze:
+### 2- Conteúdo da camada bronze:
 ---
 ![](imagens/databricks_print_bronze.png)
 
 ---
-###3- Conteúdo da camada silver:
+### 3- Conteúdo da camada silver:
 ---
 ![](imagens/databricks_print_silver.png)
 
 ---
-###4- Lista dos notebooks:
+### 4- Lista dos notebooks:
 ---
 ![](imagens/databricks_print_notebooks.png)
 
